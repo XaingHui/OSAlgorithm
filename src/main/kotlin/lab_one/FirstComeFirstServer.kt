@@ -28,23 +28,21 @@ class FirstComeFirstServer(
 
     constructor() : this("", 0, 0)
 
-    fun FCFS(works: ArrayList<Work>): Array<FirstComeFirstServer> {
-        println("先来先服务")
-        val Fall = arrayOf(
-            FirstComeFirstServer(),
-            FirstComeFirstServer(),
-            FirstComeFirstServer(),
-            FirstComeFirstServer(),
-            FirstComeFirstServer()
-        )
-        for (i in 0..Fall.size - 1)
-            works.add(Fall[i])
-        works.forEach { it.ReadWork() }
-        works.sortBy {
-            it.Atime
+    companion object {
+        fun FCFS(works: ArrayList<Work>, N: Int = 2): ArrayList<Work> {
+            println("先来先服务")
+            for (i in 0..N - 1)
+                works.add(FirstComeFirstServer())
+
+            works.forEach { it.ReadWork() }
+            val Falls = works.sortedBy {
+                it.Atime
+            }
+            val Fallss = ArrayList<Work>()
+            Falls.forEach { Fallss.add(it) }
+            works.forEach { it.Calculate(works) }
+            return Fallss
         }
-        works.forEach { it.Calculate(works) }
-        return Fall
     }
 
 }

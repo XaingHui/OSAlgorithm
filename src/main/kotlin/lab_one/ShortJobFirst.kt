@@ -1,7 +1,9 @@
 package lab_one
 
 import business.Work
+import sun.nio.cs.ext.SJIS
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ShortJobFirst(override var Pname: String, override var Atime: Int, override var Stime: Int) : Work {
     override var Ftime: Int = 1
@@ -22,15 +24,17 @@ class ShortJobFirst(override var Pname: String, override var Atime: Int, overrid
 
     constructor() : this("", 0, 0)
 
-    fun SJF(works: ArrayList<Work>): Array<ShortJobFirst> {
-        println("短作业优先")
-        val Sall = arrayOf(ShortJobFirst(), ShortJobFirst(), ShortJobFirst(), ShortJobFirst(), ShortJobFirst())
-        for (i in 0..Sall.size - 1)
-            works.add(Sall[i])
-        works.filterIsInstance<ShortJobFirst>().forEach { it.ReadWork() }
-        works.sortBy { it.Stime }
-
-        Sall.forEach { it.Calculate(works) }
-        return Sall
+    companion object {
+        fun SJF(works: ArrayList<Work>, N: Int = 1): ArrayList<Work> {
+            println("短作业优先")
+            for (i in 0..N - 1)
+                works.add(ShortJobFirst())
+            works.forEach { it.ReadWork() }
+            val SJFs = works.sortedBy { it.Stime }
+            val SJFss = ArrayList<Work>()
+            SJFs.forEach { SJFss.add(it) }
+            works.forEach { it.Calculate(works) }
+            return SJFss
+        }
     }
 }

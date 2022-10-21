@@ -2,46 +2,34 @@ package lab_one
 
 import business.Calculate
 import business.Work
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FirstComeFirstServer(
-    override var Pname: String, override var Atime: Int,
-    override var Stime: Int,
+    override var pname: String, override var atime: Int,
+    override var stime: Int,
 ) : Work, Calculate {
 
-    override var Ftime: Int = 1
-    override var Rtime: Int = 1
-    override var DRtime: Double = 1.0
-    override var AverRtime: Double = 1.0
-    override var AveDRtime: Double = 1.0
-
-    override fun ReadWork(): Work {
-        val read = Scanner(System.`in`)
-        println("请输入")
-        println("作业名\t到达时间\t服务时间\t 并以回车结束")
-        Pname = read.next()
-        Atime = read.nextInt()
-        Stime = read.nextInt()
-        return (FirstComeFirstServer(Pname, Atime, Stime))
-    }
+    override var ftime: Int = 1
+    override var rtime: Int = 1
+    override var drtime: Double = 1.0
+    override var aver_rtime: Double = 1.0
+    override var aver_drtime: Double = 1.0
+    override var priority: Int = 1
 
     constructor() : this("", 0, 0)
 
     companion object {
         fun FCFS(works: ArrayList<Work>, N: Int = 2): ArrayList<Work> {
-            println("先来先服务")
-            for (i in 0..N - 1)
+            println("--------------------先来先服务-----------------")
+            for (i in 0 until N)
                 works.add(FirstComeFirstServer())
 
             works.forEach { it.ReadWork() }
-            val Falls = works.sortedBy {
-                it.Atime
-            }
-            val Fallss = ArrayList<Work>()
-            Falls.forEach { Fallss.add(it) }
-            works.forEach { it.Calculate(works) }
-            return Fallss
+            val FCFS_temp = works.sortedBy { it.atime }
+            val FCFS_return = ArrayList<Work>()
+            FCFS_temp.forEach { FCFS_return.add(it) }
+            Calculate.calculate(FCFS_return)
+            return FCFS_return
         }
     }
 

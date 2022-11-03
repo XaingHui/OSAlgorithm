@@ -2,8 +2,6 @@ package lab_one
 
 import business.Calculate
 import business.Work
-import sun.nio.cs.ext.SJIS
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ShortJobFirst(override var pname: String, override var atime: Int, override var stime: Int) : Work, Calculate {

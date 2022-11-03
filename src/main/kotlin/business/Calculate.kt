@@ -43,9 +43,9 @@ interface Calculate {
             tempList.run {
                 forEach {
                     it.rtime = it.ftime - it.atime
-                    it.drtime = (it.rtime / it.stime).toDouble()
+                    it.drtime = (it.rtime * 1.00 / it.stime * 1.00)
                     sum1 += it.rtime
-                    it.aver_rtime = (sum1 / works.size)
+                    it.aver_rtime = sum1 / works.size * 1.00
                     sum2 += it.drtime
                     it.aver_drtime = sum2 / works.size
                 }

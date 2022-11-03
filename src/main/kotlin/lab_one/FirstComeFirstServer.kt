@@ -11,7 +11,7 @@ class FirstComeFirstServer(
 
     override var ftime: Int = 1
     override var rtime: Int = 1
-    override var drtime: Double = 1.0
+    override var drtime: Double = 1.00
     override var aver_rtime: Double = 1.0
     override var aver_drtime: Double = 1.0
     override var priority: Int = 1

@@ -2,6 +2,7 @@ package business
 
 import com.sun.jmx.remote.internal.ArrayQueue
 import lab_one.FirstComeFirstServer
+import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,12 +30,13 @@ interface Work : Calculate {
     }
 
     fun PrintWork() {
+        val format = DecimalFormat("0.##")
         print("${pname}\t\t")
         print("${atime}\t\t")
         print("${stime}\t\t")
         print("${ftime}\t\t")
         print("${rtime}\t\t")
-        print("${drtime}\t\t")
+        print("${format.format(drtime)}\t\t")
         println()
     }
 

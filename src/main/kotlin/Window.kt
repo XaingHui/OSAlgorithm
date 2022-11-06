@@ -1,5 +1,6 @@
 import business.Work
 import com.sun.jmx.remote.internal.ArrayQueue
+import lab_five.Page
 import lab_four.BestFit
 import lab_four.WorstFit
 import lab_one.FirstComeFirstServer
@@ -10,7 +11,6 @@ import lab_two.PriorityScheduling
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.system.exitProcess
 
 val works = ArrayList<Work>()
 val read = Scanner(System.`in`)
@@ -24,7 +24,7 @@ class Window {
         println("----------------------------请根据提示选择你想要模拟的算法-----------------------")
         println("\t输入实验名称代表要选择的实验(如：实验一 1.先来先服务： (先来先服务))\t\t输入(退出) 立即退出")
         println("实验一\t\t 实验二\t\t 实验三\t\t\t 实验四\t\t\t 实验五")
-        println("1.先来先服务\t 1.优先级调度\t 1.首次适应算法\t 1.最坏适应算法\t 1.先进先出页面置换算法")
+        println("1.先来先服务\t 1.优先级调度\t 1.首次适应算法\t 1.最坏适应算法\t 1.页面置换算法")
         println("2.短作业优先\t\t\t\t 2.下次适应算法\t 2.最佳适应算法")
         println("-----------------------------------------------------------------------------")
 
@@ -40,10 +40,16 @@ class Window {
                 "最坏适应算法" -> startWF()
                 "下次适应算法" -> startNF()
                 "最佳适应算法" -> startBF()
+                "页面置换算法" -> startFIFO()
                 "退出" -> break
             }
         }
         println("----------------感谢使用----------------")
+    }
+
+    private fun startFIFO() {
+        val page = Page()
+        page.Chance()
     }
 
     private fun startFCFS(works: ArrayList<Work>) {
